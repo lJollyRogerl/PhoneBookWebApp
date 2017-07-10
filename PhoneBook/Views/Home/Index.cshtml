@@ -1,0 +1,32 @@
+﻿@model IEnumerable<PhoneBook.Citizen>
+
+@* The main view *@
+
+@{
+    ViewBag.Title = "Телефонный справочник";
+}
+
+
+<p>
+    @Html.ActionLink("Создать новый контакт", null, null, new { id = "addNewContact" })
+</p>
+
+
+@Html.Partial("_CreateCitizen", new Citizen())
+
+<table class="table">
+    <tr id="tableHeaders">
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            Удалить
+        </th>
+    </tr>
+    <tbody id="tbodyCitizens">
+        @Html.Partial("_Citizen", @Model)
+    </tbody>
+</table>

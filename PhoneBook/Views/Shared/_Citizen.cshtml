@@ -1,0 +1,22 @@
+﻿@model IEnumerable<PhoneBook.Citizen>
+@using PhoneBook.CustomHtmlHelpers
+@* Partial view which is presenting a given contact details *@
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.LinkedImage("~/Content/Images/trash.png",
+                new
+                {
+                    href = Url.Action("DeleteContact", "Home", new { citizenToDelId = item.CitizenId }),
+                    onclick = "return confirm('Вы уверенны, что хотите удалить "+ item.Name +"?')"
+                })
+        </td>
+    </tr>
+}
